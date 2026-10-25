@@ -1,0 +1,80 @@
+#include <stdio.h>
+
+enum Studio { REGULAR = 1, PREMIUM = 2, IMAX = 3 };
+
+int main() {
+    enum Studio studio;
+    int pilihan;
+    int jumlah;
+    int harga = 0;
+    int total;
+    int diskon = 0;
+
+    printf("=== PEMESANAN TIKET BIOSKOP ===\n");
+
+    printf("\nPilih studio:\n");
+    printf("1. Regular - Rp 40000\n");
+    printf("2. Premium - Rp 65000\n");
+    printf("3. IMAX    - Rp 85000\n");
+    printf("Pilihan: ");
+
+    if (scanf("%d", &pilihan) != 1) {
+        printf("Input harus berupa angka!\n");
+        return 0;
+    }
+
+    if (pilihan < 1 || pilihan > 3) {
+        printf("Pilihan studio salah!\n");
+        return 0;
+    }
+
+    studio = pilihan;
+
+    switch (studio) {
+        case REGULAR:
+            harga = 40000;
+            printf("Studio Regular dipilih.\n");
+            break;
+
+        case PREMIUM:
+            harga = 65000;
+            printf("Studio Premium dipilih.\n");
+            break;
+
+        case IMAX:
+            harga = 85000;
+            printf("Studio IMAX dipilih.\n");
+            break;
+    }
+
+    printf("Jumlah tiket: ");
+
+    if (scanf("%d", &jumlah) != 1) {
+        printf("Input harus berupa angka!\n");
+        return 0;
+    }
+
+    if (jumlah <= 0) {
+        printf("Jumlah tiket tidak valid!\n");
+        return 0;
+    }
+
+    total = harga * jumlah;
+
+    if (jumlah >= 5) {
+        diskon = total * 10 / 100;
+    } else if (jumlah >= 3) {
+        diskon = total * 5 / 100;
+    }
+
+    total = total - diskon;
+
+    printf("\n=== STRUK PEMESANAN ===\n");
+    printf("Harga per tiket : Rp %d\n", harga);
+    printf("Jumlah tiket    : %d\n", jumlah);
+    printf("Diskon          : Rp %d\n", diskon);
+    printf("Total bayar     : Rp %d\n", total);
+    printf("Terima kasih!\n");
+
+    return 0;
+}
